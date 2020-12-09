@@ -35,7 +35,10 @@ class Main {
 
       if (i != firstPick) {
         combinations = combinations - (10 * percentageFirst);
-        System.out.print(i + " " + ((getProbability(i) * 10.0) / combinations) * 100 + "\n");
+
+        double probability = ((getProbability(i) * 10.0) / combinations) * 100;
+
+        System.out.print(i + " - " + Math.floor(probability * 100) / 100 + "%\n");
       }
     }
 
@@ -50,9 +53,13 @@ class Main {
 
     for (int i = 1; i < 15; i++) {
       double combinations = 1000.0;
+
       if ((i != firstPick) && (i != secondPick)) {
+
         combinations = combinations - (10 * percentageFirst) - (10 * percentageSecond);
-        System.out.print(i + " " + ((getProbability(i) * 10.0) / combinations) * 100 + "\n");
+        double probability = ((getProbability(i) * 10.0) / combinations) * 100;
+
+        System.out.print(i + " - " + Math.floor(probability * 100) / 100 + "%\n");
       }
     }
     return 0;
@@ -67,9 +74,13 @@ class Main {
 
     for (int i = 1; i < 15; i++) {
       double combinations = 1000.0;
+
       if ((i != firstPick) && (i != secondPick) && (i != thirdPick)) {
+
         combinations = combinations - (10 * percentageFirst) - (10 * percentageSecond) - (10 * percentageThird);
-        System.out.print(i + " " + ((getProbability(i) * 10.0) / combinations) * 100 + "\n");
+        double probability = ((getProbability(i) * 10.0) / combinations) * 100;
+
+        System.out.print(i + " - " + Math.floor(probability * 100) / 100 + "%\n");
       }
     }
   }
@@ -78,7 +89,9 @@ class Main {
   //draftPercentage4 to print the probabilities of each team for each new combination.
   public static void printSecondPickPerecentages() {
     for (int i = 1; i < 15; i++) {
-      System.out.print("If the first overall pick is seed: " + i + "\n");
+      System.out.print("\nIf the first overall pick is seed: " + i + "\n");
+      System.out.print("Probabilities to recieve 2nd overall pick: \n");
+
       draftPercentage2(i);
     }
   }
@@ -95,6 +108,7 @@ class Main {
 
         if (i != j) {
           int flag = 0;
+
           for (int g = 0; g < count; g++) {
             if ((combos[g][0] == i || combos[g][0] == j) && (combos[g][1] == i || combos[g][1] == j)) {
               flag = 1;
@@ -104,8 +118,12 @@ class Main {
           if (flag == 0) {
             combos[count][0] = i;
             combos[count][1] = j;
+
             count++;
-            System.out.print("If the first 2 overall picks are seeds: " + i + " " + j + "\n");
+
+            System.out.print("\nIf the first 2 overall picks are seeds: " + i + " " + j + "\n");
+            System.out.print("Probabilities to recieve 3rd overall pick: \n");
+
             draftPercentage3(i, j);
           }
         }
@@ -126,6 +144,7 @@ class Main {
 
           if (i != k && k != j && j != i) {
             int flag = 0;
+            
             for (int g = 0; g < count; g++) {
               if ((combos[g][0] == i || combos[g][0] == j || combos[g][0] == k)
                   && (combos[g][1] == i || combos[g][1] == j || combos[g][1] == k)
@@ -139,7 +158,10 @@ class Main {
               combos[count][2] = k;
 
               count++;
-              System.out.print("If the first 3 overall picks are seeds: " + i + " " + j + " " + k + "\n");
+
+              System.out.print("\nIf the first 3 overall picks are seeds: " + i + " " + j + " " + k + "\n");
+              System.out.print("Probabilities to recieve 4th overall pick: \n");
+
               draftPercentage4(i, j, k);
             }
           }
